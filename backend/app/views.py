@@ -1,5 +1,3 @@
-# views.py
-
 import datetime
 import requests
 
@@ -20,11 +18,6 @@ def index(request):
 
         weather_data1, weekly_forecast1 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forecast_url)
 
-        if not weather_data1:
-            error_message = f'Error fetching weather data for {city1}. Please enter a valid city.'
-            context = {'error_message': error_message}
-            return render(request, 'C:\\Users\\shahb\\Documents\\Course Work\\Undergraduate-Course-Work\\Web Development\\skystate\\backend\\templates\\index.html', context)
-
         context = {
             'weather_data1': weather_data1,
             'weekly_forecast1': weekly_forecast1,
@@ -35,15 +28,13 @@ def index(request):
         return render(request, 'C:\\Users\\shahb\\Documents\\Course Work\\Undergraduate-Course-Work\\Web Development\\skystate\\backend\\templates\\index.html')
 
 
-# views.py
-
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
     response = requests.get(current_weather_url.format(city, api_key)).json()
     lat, lon = response['coord']['lat'], response['coord']['lon']
     forecast_response = requests.get(forecast_url.format(lat, lon, api_key)).json()
 
-    print("Current Weather Response:", response)  # Add this line for debugging
-    print("Forecast Response:", forecast_response)  # Add this line for debugging
+    #print("Current Weather Response:", response) 
+    #print("Forecast Response:", forecast_response)
 
     weather_data = {
         'city': city,
