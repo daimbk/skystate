@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./WeatherForecast.css";
 
 const WeatherComponent = () => {
   const [city, setCity] = useState("");
@@ -43,7 +44,7 @@ const WeatherComponent = () => {
       >
         <input
           type="text"
-          placeholder="Enter city"
+          placeholder="Enter City"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
@@ -54,9 +55,9 @@ const WeatherComponent = () => {
 
       {weatherData && (
         <div className="city-container">
-          <h1>{weatherData.city}</h1>
-          <h2>{weatherData.temperature}°C</h2>
-          <p>{weatherData.description}</p>
+          <h3 className="capitalize-words">{weatherData.city}</h3>
+          <h1 className="temp">{weatherData.temperature}°C</h1>
+          <p className="capitalize-words">{weatherData.description}</p>
           <img
             src={`http://openweathermap.org/img/w/${weatherData.icon}.png`}
             alt={weatherData.description}
