@@ -34,7 +34,7 @@ const WeatherComponent = () => {
     }
   };
 
-   return (
+  return (
     <div>
       <form
         onSubmit={(e) => {
