@@ -41,7 +41,7 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
 
     weather_data = {
         'city': city,
-        'temperature': round(response['main']['temp'] - 273.15, 2),
+        'temperature': round(response['main']['temp'] - 273.15, 0),
         'description': response['weather'][0]['description'],
         'icon': response['weather'][0]['icon'],
     }
