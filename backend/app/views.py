@@ -15,11 +15,6 @@ def index(request):
     if request.method == 'POST':
         city1 = request.POST.get('city1', None)
 
-        if not city1:
-            error_message = 'Please enter a city.'
-            context = {'error_message': error_message}
-            return JsonResponse(context, status=400)
-
         weather_data1, weekly_forecast1 = fetch_weather_and_forecast(
             city1, API_KEY, current_weather_url, forecast_url)
 

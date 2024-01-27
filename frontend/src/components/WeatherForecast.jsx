@@ -34,11 +34,15 @@ const WeatherComponent = () => {
     }
   };
 
-  return (
+   return (
     <div>
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          if (!city) {
+            setError("Please enter a city.");
+            return;
+          }
           fetchData();
         }}
       >

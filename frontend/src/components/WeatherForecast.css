@@ -55,3 +55,9 @@ img {
 .capitalize-words::first-letter {
   text-transform: capitalize;
 }
+
+.error {
+  color: black;
+  /* Change the color to black */
+  margin-top: 15px;
+}
