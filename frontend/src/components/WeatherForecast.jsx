@@ -59,8 +59,10 @@ const WeatherComponent = () => {
 
       {weatherData && (
         <div className="city-container">
-          <h3 className="capitalize-words">{weatherData.city}</h3>
+          <h2 className="capitalize-words">{weatherData.city}</h2>
           <h1 className="temp">{weatherData.temperature}°C</h1>
+          <h3>Feels Like: {weatherData.feels_like}°C</h3>
+          <h3>Humidity: {weatherData.humidity}%</h3>
           <p className="capitalize-words">{weatherData.description}</p>
           <img
             src={`http://openweathermap.org/img/w/${weatherData.icon}.png`}
@@ -71,10 +73,9 @@ const WeatherComponent = () => {
             {weeklyForecast.map((forecast, index) => (
               <div key={index} className="forecast">
                 <h3>{forecast.day}</h3>
-                <p>
-                  {forecast.min_temp}°C - {forecast.max_temp}°C
-                </p>
-                <p>{forecast.description}</p>
+                <p>{forecast.temperature}°C</p>
+                <p>Humidity: {forecast.humidity}%</p>
+                <p className="capitalize-words">{forecast.description}</p>
                 <img
                   src={`http://openweathermap.org/img/w/${forecast.icon}.png`}
                   alt={forecast.description}
