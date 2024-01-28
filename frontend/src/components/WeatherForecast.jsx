@@ -87,8 +87,24 @@ const WeatherComponent = () => {
             height: auto;
           }
 
-          .uppercase-words::first-line {
+          .capitalize-words::first-line {
             text-transform: uppercase;
+          }
+
+          .forecast-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+          }
+
+          .forecast {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           }
         `}
       </style>
@@ -116,11 +132,11 @@ const WeatherComponent = () => {
 
       {weatherData && (
         <div className="city-container">
-          <h2 className="uppercase-words">{weatherData.city}</h2>
+          <h2 className="capitalize-words">{weatherData.city}</h2>
           <h1 className="temp">{weatherData.temperature}°C</h1>
           <h3>Feels Like: {weatherData.feels_like}°C</h3>
           <h3>Humidity: {weatherData.humidity}%</h3>
-          <p className="uppercase-words">{weatherData.description}</p>
+          <p className="capitalize-words">{weatherData.description}</p>
           <img
             src={`http://openweathermap.org/img/w/${weatherData.icon}.png`}
             alt={weatherData.description}
@@ -132,7 +148,7 @@ const WeatherComponent = () => {
                 <h3>{forecast.day}</h3>
                 <p>{forecast.temperature}°C</p>
                 <p>Humidity: {forecast.humidity}%</p>
-                <p className="uppercase-words">{forecast.description}</p>
+                <p className="capitalize-words">{forecast.description}</p>
                 <img
                   src={`http://openweathermap.org/img/w/${forecast.icon}.png`}
                   alt={forecast.description}
