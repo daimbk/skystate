@@ -27,24 +27,26 @@ def index(request):
     else:
         return JsonResponse({})
 
+
 @csrf_exempt
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
     response = requests.get(current_weather_url.format(city, api_key)).json()
     lat, lon = response['coord']['lat'], response['coord']['lon']
-    forecast_response = requests.get(forecast_url.format(lat, lon, api_key)).json()
+    forecast_response = requests.get(
+        forecast_url.format(lat, lon, api_key)).json()
 
-    #print("Forecast URL:", forecast_url.format(lat, lon, api_key))
+    # print("Forecast URL:", forecast_url.format(lat, lon, api_key))
 
     weather_data = {
         'city': city,
         'temperature': round(response['main']['temp'] - 273.15, 0),
-        'feels like': round(response['main']['feels_like'] - 273.15, 0),
+        'feels_like': round(response['main']['feels_like'] - 273.15, 0),
         'humidity': response['main']['humidity'],
         'description': response['weather'][0]['description'],
         'icon': response['weather'][0]['icon'],
     }
 
-    #print("Weather Data:", weather_data)
+    # print("Weather Data:", weather_data)
 
     weekly_forecast = []
     processed_dates = set()
@@ -66,8 +68,10 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
         processed_dates.add(forecast_date)
 
         day = forecast_date.strftime('%A')
-        temperature = round(forecast_data.get('main', {}).get('temp', 0) - 273.15, 0)
-        description = forecast_data.get('weather', [{}])[0].get('description', '')
+        temperature = round(forecast_data.get(
+            'main', {}).get('temp', 0) - 273.15, 0)
+        description = forecast_data.get('weather', [{}])[
+            0].get('description', '')
         icon = forecast_data.get('weather', [{}])[0].get('icon', '')
         humidity = forecast_data.get('main', {}).get('humidity', 0)
 
@@ -80,6 +84,6 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url)
         }
 
         weekly_forecast.append(daily_forecast)
-    #print("Weekly Forecast:", weekly_forecast)
+    # print("Weekly Forecast:", weekly_forecast)
 
     return weather_data, weekly_forecast
