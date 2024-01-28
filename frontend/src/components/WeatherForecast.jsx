@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./WeatherForecast.css";
 
 const WeatherComponent = () => {
   const [city, setCity] = useState("");
@@ -36,6 +35,64 @@ const WeatherComponent = () => {
 
   return (
     <div>
+      <style>
+        {`
+          form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          input {
+            text-align: center;
+            padding: 10px 0px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 22px;
+            font-size: large;
+          }
+
+          button {
+            padding: 10px 30px;
+            background-color: #691a0c;
+            color: #f5d7db;
+            border: 1px solid #ccc;
+            border-radius: 22px;
+            cursor: pointer;
+            font-size: large;
+            transition: 0.5s ease;
+          }
+
+          button:hover {
+            background-color: #b82c14;
+            color: #ccc;
+            transition: 0.5s ease;
+          }
+
+          .error {
+            color: black;
+            margin-top: 15px;
+          }
+
+          .city-container {
+            margin-top: 3rem;
+          }
+
+          .temp {
+            font-size: 50px;
+          }
+
+          img {
+            width: 80px;
+            height: auto;
+          }
+
+          .uppercase-words::first-line {
+            text-transform: uppercase;
+          }
+        `}
+      </style>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -59,11 +116,11 @@ const WeatherComponent = () => {
 
       {weatherData && (
         <div className="city-container">
-          <h2 className="capitalize-words">{weatherData.city}</h2>
+          <h2 className="uppercase-words">{weatherData.city}</h2>
           <h1 className="temp">{weatherData.temperature}°C</h1>
           <h3>Feels Like: {weatherData.feels_like}°C</h3>
           <h3>Humidity: {weatherData.humidity}%</h3>
-          <p className="capitalize-words">{weatherData.description}</p>
+          <p className="uppercase-words">{weatherData.description}</p>
           <img
             src={`http://openweathermap.org/img/w/${weatherData.icon}.png`}
             alt={weatherData.description}
@@ -75,7 +132,7 @@ const WeatherComponent = () => {
                 <h3>{forecast.day}</h3>
                 <p>{forecast.temperature}°C</p>
                 <p>Humidity: {forecast.humidity}%</p>
-                <p className="capitalize-words">{forecast.description}</p>
+                <p className="uppercase-words">{forecast.description}</p>
                 <img
                   src={`http://openweathermap.org/img/w/${forecast.icon}.png`}
                   alt={forecast.description}
